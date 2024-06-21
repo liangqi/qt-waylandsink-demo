@@ -27,8 +27,8 @@ static GstBusSyncReply _bus_callback (GstBus */*bus*/, GstMessage *message, gpoi
 
       QPlatformNativeInterface *native =
               QGuiApplication::platformNativeInterface();
-      struct wl_surface *surface = static_cast<struct wl_surface *>(
-                  native->nativeResourceForWindow("surface", widget->windowHandle()));
+      struct wl_surface *surface = (struct wl_surface *)
+              native->nativeResourceForWindow("surface", widget->window()->windowHandle());
 
       gst_video_overlay_set_window_handle (GST_VIDEO_OVERLAY (GST_MESSAGE_SRC (message)), (guintptr) surface);
       gst_video_overlay_set_render_rectangle (GST_VIDEO_OVERLAY (GST_MESSAGE_SRC (message)), widget->x(), widget->y(), widget->width(), widget->height());

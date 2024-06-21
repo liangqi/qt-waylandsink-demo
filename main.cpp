@@ -6,7 +6,7 @@
 class MyWidget : public QWidget {
 public:
     MyWidget() {
-        setAttribute(Qt::WA_NativeWindow);
+        //setAttribute(Qt::WA_NativeWindow);
         Widget *win = new Widget();
         QHBoxLayout *layout = new QHBoxLayout(this);
         layout->addWidget(win);
