@@ -9,7 +9,7 @@ static GstBusSyncReply _bus_callback (GstBus */*bus*/, GstMessage *message, gpoi
 {
     Widget* widget = static_cast<Widget*>(user_data);
 
-    if (gst_is_wayland_display_handle_need_context_message (message)) {
+    if (gst_is_wl_display_handle_need_context_message (message)) {
       GstContext *context;
       qDebug() << "Need Context";
 
@@ -18,7 +18,7 @@ static GstBusSyncReply _bus_callback (GstBus */*bus*/, GstMessage *message, gpoi
       struct wl_display *display_handle = (struct wl_display *)
               native->nativeResourceForWindow("display", NULL);
 
-      context = gst_wayland_display_handle_context_new (display_handle);
+      context = gst_wl_display_handle_context_new (display_handle);
       gst_element_set_context (GST_ELEMENT (GST_MESSAGE_SRC (message)), context);
 
       goto drop;
@@ -48,6 +48,7 @@ static GstBusSyncReply _bus_callback (GstBus */*bus*/, GstMessage *message, gpoi
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
 {
+    setAttribute(Qt::WA_NativeWindow);
     GstElement *source;
     GstElement *sink;
     _pipeline = gst_pipeline_new ("waylandsinktest");

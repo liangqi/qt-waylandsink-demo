@@ -33,7 +33,7 @@ HEADERS += \
 
 unix {
    CONFIG += link_pkgconfig
-   PKGCONFIG += gstreamer-1.0 gstreamer-audio-1.0 gstreamer-video-1.0 llmanager pte wedge
+   PKGCONFIG += gstreamer-1.0 gstreamer-audio-1.0 gstreamer-video-1.0
    target.path = /tmp/tmp/tmp/app
    xml.path = /tmp/doc/xml
    xml.files = ../../../doc/xml/*
